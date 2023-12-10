@@ -1,6 +1,7 @@
 package Teme_sping.Online_shop.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 
@@ -23,6 +24,10 @@ public class Product {
     @JsonBackReference("category-product")
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @OneToMany(mappedBy = "product", cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    @JsonManagedReference("wishlistitem-product")
+    private List<WishlistItem> wishListItemlist;
 
     public Product() {
     }
