@@ -18,7 +18,7 @@ public class WishlistItem {
     @ManyToOne
     @JoinColumn(name = "wishlist_id")
     @JsonBackReference("wishlistitem-wishlist")
-    private WhishList whishList;
+    private WishList wishList;
 
     public WishlistItem() {
     }
@@ -39,11 +39,11 @@ public class WishlistItem {
         this.product = product;
     }
 
-    public WhishList getWhishList() {
-        return whishList;
+    public WishList getWishList() {
+        return wishList;
     }
 
-    public void setWhishList(WhishList whishList) {
-        this.whishList = whishList;
+    public void setWishList(WishList wishList) {
+        this.wishList = wishList;
     }
 }

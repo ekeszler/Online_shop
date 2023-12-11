@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-public class WhishList {
+public class WishList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,7 @@ public class WhishList {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public WhishList() {
+    public WishList() {
     }
 
     public Long getId() {
