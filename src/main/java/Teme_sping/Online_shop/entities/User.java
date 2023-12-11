@@ -19,7 +19,7 @@ public class User {
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference("user-wishlist")
-    private WhishList whishList;
+    private WishList wishList;
 
     public User() {
     }
@@ -48,11 +48,11 @@ public class User {
         this.password = password;
     }
 
-    public WhishList getWhishList() {
-        return whishList;
+    public WishList getWhishList() {
+        return wishList;
     }
 
-    public void setWhishList(WhishList whishList) {
-        this.whishList = whishList;
+    public void setWhishList(WishList wishList) {
+        this.wishList = wishList;
     }
 }
