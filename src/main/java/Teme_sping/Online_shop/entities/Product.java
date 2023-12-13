@@ -29,7 +29,38 @@ public class Product {
     @JsonManagedReference("wishlistitem-product")
     private List<WishlistItem> wishListItemlist;
 
+    @OneToMany(mappedBy = "product", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
+    @JsonManagedReference("cartitem-product")
+    private List<CartItem> cartItems;
+
+    @Column
+    private Integer stock;
+
     public Product() {
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+    public List<WishlistItem> getWishListItemlist() {
+        return wishListItemlist;
+    }
+
+    public void setWishListItemlist(List<WishlistItem> wishListItemlist) {
+        this.wishListItemlist = wishListItemlist;
+    }
+
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
     }
 
     public Product(String name, Category category) {
