@@ -3,8 +3,6 @@ package Teme_sping.Online_shop.entities;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
 public class User {
 
@@ -21,29 +19,9 @@ public class User {
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference("user-wishlist")
-    private WishList wishList;
-
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
-    @JsonManagedReference("cartitem-user")
-    private List<CartItem> cartItems;
+    private WhishList whishList;
 
     public User() {
-    }
-
-    public WishList getWishList() {
-        return wishList;
-    }
-
-    public void setWishList(WishList wishList) {
-        this.wishList = wishList;
-    }
-
-    public List<CartItem> getCartItems() {
-        return cartItems;
-    }
-
-    public void setCartItems(List<CartItem> cartItems) {
-        this.cartItems = cartItems;
     }
 
     public Long getId() {
@@ -70,11 +48,11 @@ public class User {
         this.password = password;
     }
 
-    public WishList getWhishList() {
-        return wishList;
+    public WhishList getWhishList() {
+        return whishList;
     }
 
-    public void setWhishList(WishList wishList) {
-        this.wishList = wishList;
+    public void setWhishList(WhishList whishList) {
+        this.whishList = whishList;
     }
 }
