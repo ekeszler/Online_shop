@@ -25,7 +25,7 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @OneToMany(mappedBy = "product", cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    @OneToMany(mappedBy = "product", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
     @JsonManagedReference("wishlistitem-product")
     private List<WishlistItem> wishListItemlist;
 
@@ -38,6 +38,12 @@ public class Product {
 
     public Product() {
     }
+
+    public Product(String name, Category category) {
+        this.name = name;
+        this.category = category;
+    }
+
 
     public Integer getStock() {
         return stock;
@@ -63,10 +69,6 @@ public class Product {
         this.cartItems = cartItems;
     }
 
-    public Product(String name, Category category) {
-        this.name = name;
-        this.category = category;
-    }
 
     public Long getId() {
         return id;

@@ -3,6 +3,9 @@ package Teme_sping.Online_shop.entities;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.List;
+import java.util.Set;
+
 @Entity
 public class User {
 
@@ -19,7 +22,18 @@ public class User {
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference("user-wishlist")
-    private WhishList whishList;
+    private WishList wishList;
+
+    @OneToMany(mappedBy = "user",  cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
+    @JsonManagedReference("cartitem-user")
+    private List<CartItem> cartItems;
+
+    @OneToMany(mappedBy = "user",  cascade = {CascadeType.ALL}, orphanRemoval = true)
+    @JsonManagedReference("order-user")
+    private List<Order> orders;
+
+    @ManyToMany(mappedBy ="users")
+    private Set<Role> roles;
 
     public User() {
     }
@@ -48,11 +62,35 @@ public class User {
         this.password = password;
     }
 
-    public WhishList getWhishList() {
-        return whishList;
+    public WishList getWishList() {
+        return wishList;
     }
 
-    public void setWhishList(WhishList whishList) {
-        this.whishList = whishList;
+    public void setWishList(WishList wishList) {
+        this.wishList = wishList;
+    }
+
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

@@ -16,17 +16,18 @@ public class Category {
     private String name;
 
     @Column
-    private String Description;
+    private String description;
 
     @OneToMany(mappedBy = "category")
     @JsonManagedReference("category-product")
-    List<Product> products;
+    List<Product> productList;
 
     public Category() {
     }
 
-    public Category(String name) {
+    public Category(String name, String description) {
         this.name = name;
+        this.description = description;
     }
 
     public Long getId() {
@@ -45,20 +46,20 @@ public class Category {
         this.name = name;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<Product> getProductList() {
+        return productList;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setProductList(List<Product> products) {
+        this.productList = products;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
     @Override
@@ -66,8 +67,8 @@ public class Category {
         return "Category{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", Description='" + Description + '\'' +
-                ", products=" + products +
+                ", Description='" + description + '\'' +
+                ", products=" + productList +
                 '}';
     }
 }

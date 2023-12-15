@@ -3,9 +3,7 @@ package Teme_sping.Online_shop.dtos;
 public class CartRequestDTO {
 
     private Long productId;
-
     private Long userId;
-
     private Integer quantity;
 
     public CartRequestDTO(Long productId, Long userId, Integer quantity) {

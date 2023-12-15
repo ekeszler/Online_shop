@@ -35,7 +35,7 @@ public class WishListService {
     public WishList addItemToWishList(WishListRequestDTO wishListRequestDTO){
         User user = userRepository.findById(wishListRequestDTO.getUserId()).orElseThrow(()-> new ResourceNotFoundException("user not found"));
         Product product = productRepository.findById(wishListRequestDTO.getProductId()).orElseThrow(()-> new ResourceNotFoundException("product not found"));
-        WishList wishList = user.getWhishList();
+        WishList wishList = user.getWishList();
         WishlistItem wishlistItem = new WishlistItem();
         wishlistItem.setProduct(product);
         wishlistItem.setWishList(wishList);
