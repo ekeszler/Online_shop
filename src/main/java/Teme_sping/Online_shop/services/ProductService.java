@@ -13,23 +13,28 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductService {
 
-    private ProductRepository productRepository;
     private CategoryRepository categoryRepository;
+    private ProductRepository productRepository;
 
     @Autowired
-    public ProductService(CategoryRepository categoryRepository ,ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public ProductService(CategoryRepository categoryRepository, ProductRepository productRepository) {
         this.categoryRepository = categoryRepository;
+        this.productRepository = productRepository;
     }
+
     @Transactional
-    public Product addProduct(ProductRequestDTO productRequestDTO){
-        Category category = categoryRepository.findById(productRequestDTO.getCategoryId()).orElseThrow(()-> new ResourceNotFoundException("category not found"));
-        Product productToBeSeaved = new Product();
-        productToBeSeaved.setName(productRequestDTO.getName());
-        productToBeSeaved.setPrice(productRequestDTO.getPrice());
-        productToBeSeaved.setCategory(category);
-        productRepository.save(productToBeSeaved);
-        return productRepository.save(productToBeSeaved);
+    public Product addProduct(ProductRequestDTO productRequestDTO) {
+        Category category = categoryRepository.findById(productRequestDTO.getCategoryId()).orElseThrow(() -> new ResourceNotFoundException("category not found"));
+        Product productToBeSaved = new Product();
+        productToBeSaved.setName(productRequestDTO.getName());
+        productToBeSaved.setPrice(productRequestDTO.getPrice());
+        productToBeSaved.setCategory(category);
+        if(productToBeSaved.getStock()==null){
+            productToBeSaved.setStock(1);
+        }else {
+            productToBeSaved.setStock(productToBeSaved.getStock() + 1);
+        }
+        return productRepository.save(productToBeSaved);
     }
 
 }

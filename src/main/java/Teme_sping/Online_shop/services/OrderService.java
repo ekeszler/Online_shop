@@ -2,20 +2,25 @@ package Teme_sping.Online_shop.services;
 
 import Teme_sping.Online_shop.Exceptions.ResourceNotFoundException;
 import Teme_sping.Online_shop.dtos.CartItemResponseDTO;
+import Teme_sping.Online_shop.dtos.CartResponseDTO;
 import Teme_sping.Online_shop.dtos.OrderItemResponseDTO;
+import Teme_sping.Online_shop.dtos.OrderResponseDTO;
 import Teme_sping.Online_shop.entities.CartItem;
+import Teme_sping.Online_shop.entities.Order;
 import Teme_sping.Online_shop.entities.OrderItem;
 import Teme_sping.Online_shop.entities.User;
 import Teme_sping.Online_shop.repositories.CartItemRepository;
 import Teme_sping.Online_shop.repositories.OrderRepository;
+import Teme_sping.Online_shop.repositories.OrderItemRepository;
 import Teme_sping.Online_shop.repositories.UserRepository;
-import jakarta.persistence.criteria.Order;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import Teme_sping.Online_shop.entities.OrderItem;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
